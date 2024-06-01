@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionPills from '../../components/SectionPills.tsx';
+const title = 'Blog';
+const description = 'Latest articles.';
+const permalink = `${Astro.site.href}blog`;
+console.log('cart hai ya nahi');
+
+let allPosts = await Astro.glob('../../data/blog-posts/*/*.mdx');
+allPosts = allPosts.sort(
+  (a, b) =>
+    new Date(b.frontmatter.publishDate).valueOf() -
+    new Date(a.frontmatter.publishDate).valueOf(),
+);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="blog"
+>
+  <div class="container">
+    <h1>Blog</h1>
+    <div>
+      <SectionPills client:load allPosts={allPosts}/>
+      {allPosts
+        .map((post, index) => {
+          const hrefPost = `/blog/${post.file.split('/').slice(-2)[0]}/${post.file.split('/').pop().split('.').shift()}`;
+          const hrefTopic = `/blog/${post.file.split('/').slice(-2)[0]}/`
+          return (
+            <div>
+              {index !== 0 && <hr />}
+              <div class="post-item">
+                <h2>
+                  <a href={hrefPost}>{post.frontmatter.title}</a>{' '}
+                  <a  href={hrefTopic} class="subtitle"> ~ {post.frontmatter.topic}</a>
+                </h2>
+                <p>{post.frontmatter.description}</p>
+                <div class="post-item-footer">
+                  <span class="post-item-date">
+                    — {post.frontmatter.publishDate}
+                  </span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  h2,
+  .post-item-footer {
+    font-family: var(--font-family-sans);
+    font-weight: 700;
+  }
+
+  .post-item-date {
+    color: var(--text-secondary);
+    text-align: left;
+    text-transform: uppercase;
+    margin-right: 16px;
+  }
+
+  hr {
+    margin: 60px auto;
+  }
+
+  .post-item .subtitle {
+    display: inline;
+    margin-left: 1em;
+    font-size: 0.4em;
+  }
+</style>

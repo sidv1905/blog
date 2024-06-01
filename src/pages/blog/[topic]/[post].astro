@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Bio from '../../../components/Bio.astro';
+import getPostData from '../../../utils/getPostData';
+import { warn } from 'astro/dist/core/logger/core';
+
+export async function getStaticPaths() {
+  const posts = await Astro.glob('../../../data/blog-posts/*/*.mdx');
+  console.log(posts.map((p) => {
+    const fileTopic = p.file.split('/').slice(-2)[0];
+
+    return {
+      params: {
+        topic: fileTopic,
+        post: p.file.split('/').pop().split('.').shift(),
+      },
+      props: { post: p },
+    };
+  }));
+  return posts.map((p) => {
+    const fileTopic = p.file.split('/').slice(-2)[0];
+
+    return {
+      params: {
+        post: p.file.split('/').pop().split('.').shift(),
+        topic: fileTopic,
+      },
+      props: { post: p },
+    };
+  });
+}
+
+const { Content, frontmatter } = Astro.props.post;
+const { title, description, publishDate, topic } = frontmatter;
+const { slug, readingTime } = getPostData(Astro.props.post);
+const permalink = `${Astro.site.href}blog/${slug}`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="blog"
+>
+  <header>
+    <h5>{topic}</h5>
+    <h1>{title}</h1>
+    <p>{publishDate} ~ {readingTime}</p>
+  </header>
+  <div transition:animate="initial" class="container">
+    <article class="content">
+      <Content />
+    </article>
+    <hr />
+    <Bio />
+  </div>
+</BaseLayout>
+
+<style>
+  header {
+    text-align: center;
+    margin: 2em 0em;
+  }
+
+  header h1 {
+    margin-bottom: 0.7em;
+  }
+
+  header p {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-family: var(--font-family-sans);
+    font-weight: 600;
+  }
+
+  header hr {
+    min-width: 100px;
+    width: 30%;
+  }
+  header h5 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+</style>

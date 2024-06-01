@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+const title = 'Blog';
+const description = 'Latest articles.';
+const permalink = `${Astro.site.href}blog`;
+console.log('cart hai ya nahi');
+
+export async function getStaticPaths() {
+  const posts = await Astro.glob('../../../data/blog-posts/*/*.mdx');
+  console.log(
+    posts.map((p) => {
+      const fileTopic = p.file.split('/').slice(-2)[0];
+
+      return {
+        params: {
+          topic: fileTopic,
+          post: p.file.split('/').pop().split('.').shift(),
+        },
+        props: { post: p },
+      };
+    }),
+  );
+  return posts.map((p) => {
+    const fileTopic = p.file.split('/').slice(-2)[0];
+
+    const postName = p.file.split('/').pop().split('.').shift();
+    return {
+      params: {
+        topic: fileTopic,
+      },
+      props: { post: p, topic: fileTopic, postName: postName },
+    };
+  });
+}
+const { topic, postName } = Astro.props;
+
+let allPosts = await Astro.glob('../../../data/blog-posts/*/*.mdx');
+
+const allPostsfiltered = allPosts.filter((post) => {
+  return post.frontmatter.topic === topic;
+});
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="blog"
+>
+  <div class="container">
+    <div class="heading">
+      <a href="/blog">&#8592;</a>
+      <h1>{topic}</h1>
+    </div>
+    <div class="posts">
+      {
+        allPostsfiltered.map((post, index) => {
+          const href = `/blog/${topic}/${postName}`;
+          return (
+            <div>
+              {index !== 0 && <hr />}
+              <div class="post-item">
+                <h2>
+                  <a href={href}>{post.frontmatter.title}</a>{' '}
+                  <p class="subtitle"> ~ {post.frontmatter.topic}</p>
+                </h2>
+                <p>{post.frontmatter.description}</p>
+                <div class="post-item-footer">
+                  <span class="post-item-date">
+                    — {post.frontmatter.publishDate}
+                  </span>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  h2,
+  .post-item-footer {
+    font-family: var(--font-family-sans);
+    font-weight: 700;
+  }
+
+  .post-item-date {
+    color: var(--text-secondary);
+    text-align: left;
+    text-transform: uppercase;
+    margin-right: 16px;
+  }
+
+  hr {
+    margin: 60px auto;
+  }
+
+  .post-item .subtitle {
+    display: inline;
+    margin-left: 1em;
+    font-size: 0.4em;
+  }
+  .heading{
+      display:flex;
+      align-items: center;
+  }
+  h1{
+      margin:0;
+      padding-left: 0.4em;
+  }
+  .posts{
+      margin-top: 7.5em;
+  }
+  .heading a{
+      font-size: 1.2em;
+      cursor:pointer;
+      text-decoration: none;
+  }
+</style>
