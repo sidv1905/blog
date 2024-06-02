@@ -1,18 +1,52 @@
 .pillsContainer {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
   border: 1px solid rgb(151, 181, 230, 0.5);
+  padding: 10px;
   border-radius: 10px;
+  position: relative;
+}
+.pillsContainer .pills {
+  margin: 0 30px;
+  overflow: scroll;
+  scroll-behavior: smooth;
+}
+.pills::-webkit-scrollbar {
+  display: none;
+}
+
+.pillsContainer .lefter,
+.righter {
+  position: absolute;
+  z-index: 999;
+  cursor: pointer;
+  width: 50px;
+  user-select: none;
+  background-color: var(--background-body);
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pillsContainer p:hover {
+  color: aqua;
+}
+.pillsContainer .lefter {
+  left: 0;
+}
+.pillsContainer .righter {
+  right: 0;
 }
 .pillItem {
   color: inherit;
   text-decoration: none;
-  text-underline-offset: 100px;
   padding: 10px 5px;
   display: inline;
   position: relative;
   margin-left: 20px;
-  min-width: 70px;
+  margin-right: 20px;
   text-align: center;
 }
 
@@ -35,8 +69,13 @@
 .pillItem:hover::before,
 .selected::before {
   transform: scaleX(1);
+  text-decoration: underline;
 }
 
 .selected::before {
   background: var(--primary-color);
+}
+.pillsContainer > .pills {
+  display: flex;
+  padding-right: 1em;
 }
