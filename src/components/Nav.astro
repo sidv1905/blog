@@ -3,6 +3,27 @@ import ThemeToggleButton from './ThemeToggleButton.svelte';
 const { current = '' } = Astro.props;
 ---
 
+<script is:inline data-astro-rerun>
+  document.addEventListener('astro:page-load', () => {
+    const hamburger = document.querySelector('.drawer-container');
+    const drawerContent = document.querySelector('.drawer-content');
+    console.log(hamburger);
+
+    hamburger?.addEventListener('click', () => {
+      console.log('container', drawerContent.classList);
+
+      if (drawerContent?.classList.contains('hide')) {
+        drawerContent?.classList.remove('hide');
+        drawerContent.classList.add('show');
+      } else {
+        drawerContent?.classList.remove('show');
+        drawerContent?.classList.add('hide');
+      }
+      // display none to drawer-content and display flex again
+      // css will do smaller device handling
+    });
+  });
+</script>
 <style>
   nav {
     align-items: center;
@@ -53,13 +74,77 @@ const { current = '' } = Astro.props;
   .theme-toggle-container {
     width: 75px;
   }
+  .drawer-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  .drawer-content {
+    position: absolute;
+    display: none;
+    background-color: var(--text-main);
+    color: var(--background-body);
+    z-index: 999;
+    padding-top: 2em;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 30%;
+  }
+
+  .bar1,
+  .bar2,
+  .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: var(--text-secondary);
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+  @media only screen and (max-width: 767px) {
+    nav {
+      display: none;
+    }
+    .drawer-container {
+      display: inline-block;
+    }
+    .show {
+      display: block;
+    }
+    .hide {
+      display: none;
+    }
+    .theme-toggle-container {
+      width: unset;
+      display: flex;
+      justify-content: center;
+    }
+  }
 </style>
 
-<nav>
-  <a class={current === '' ? 'selected' : ''} href="/">home</a>
-  <a class={current === 'about' ? 'selected' : ''} href="/about">about</a>
-  <a class={current === 'blog' ? 'selected' : ''} href="/blog">blog</a>
-  <div class="theme-toggle-container">
-    <ThemeToggleButton client:load />
+<div>
+  <nav>
+    <a class={current === '' ? 'selected' : ''} href="/">home</a>
+    <a class={current === 'about' ? 'selected' : ''} href="/about">about</a>
+    <a class={current === 'blog' ? 'selected' : ''} href="/blog">blog</a>
+    <div class="theme-toggle-container">
+      <ThemeToggleButton client:load />
+    </div>
+  </nav>
+  <div class="drawer-container">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
   </div>
-</nav>
+  <div class="drawer-content hide">
+    <a class={current === '' ? 'selected' : ''} href="/">home</a>
+    <a class={current === 'about' ? 'selected' : ''} href="/about">about</a>
+    <a class={current === 'blog' ? 'selected' : ''} href="/blog">blog</a>
+    <div class="theme-toggle-container">
+      <ThemeToggleButton client:load />
+    </div>
+  </div>
+</div>
