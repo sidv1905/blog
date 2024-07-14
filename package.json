@@ -1,35 +1,38 @@
 {
-    "name": "noob-blog",
-    "version": "0.0.1",
-    "scripts": {
-        "dev": "astro dev",
-        "start": "astro dev",
-        "build": "astro check && astro build",
-        "preview": "astro preview",
-        "astro": "astro"
-    },
-    "dependencies": {
-        "@astrojs/check": "^0.7.0",
-        "@astrojs/mdx": "^2.0.0",
-        "@astrojs/react": "^3.3.4",
-        "@astrojs/svelte": "^5.0.0",
-        "@nanostores/react": "^0.7.2",
-        "@types/react": "^18.3.2",
-        "@types/react-dom": "^18.3.0",
-        "astro": "^4.0.1",
-        "classnames": "^2.5.1",
-        "nanostores": "^0.10.3",
-        "react": "^19.0.0-beta",
-        "react-dom": "^19.0.0-beta",
-        "reading-time": "^1.5.0",
-        "rehype-external-links": "^3.0.0",
-        "remark-gfm": "^4.0.0",
-        "remark-smartypants": "^2.0.0",
-        "typescript": "^5.4.5"
-    },
-    "devDependencies": {
-        "prettier": "^3.2.5",
-        "prettier-plugin-astro": "^0.13.0",
-        "prettier-plugin-svelte": "^3.2.3"
-    }
+  "name": "noob-blog",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/mdx": "^2.0.0",
+    "@astrojs/react": "^3.3.4",
+    "@astrojs/svelte": "^5.0.0",
+    "@codesandbox/sandpack-react": "2.14.4",
+    "@codesandbox/sandpack-themes": "^2.0.21",
+    "@nanostores/react": "^0.7.2",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^4.0.1",
+    "classnames": "^2.5.1",
+    "nanostores": "^0.10.3",
+    "react": "^19.0.0-beta",
+    "react-dom": "^19.0.0-beta",
+    "reading-time": "^1.5.0",
+    "rehype-external-links": "^3.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-smartypants": "^2.0.0",
+    "typescript": "^5.4.5",
+    "playground-elements": "0.18.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
+    "prettier-plugin-svelte": "^3.2.3"
+  }
 }

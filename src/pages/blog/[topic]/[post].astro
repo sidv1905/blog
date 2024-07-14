@@ -16,7 +16,7 @@ export async function getStaticPaths() {
       },
       props: { post: p },
     };
-  }));
+  }), 'gsp');
   return posts.map((p) => {
     const fileTopic = p.file.split('/').slice(-2)[0];
 

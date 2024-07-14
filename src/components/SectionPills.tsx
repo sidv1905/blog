@@ -18,6 +18,7 @@ export default function SectionPills(props: SectionPillsProps) {
   let allSections = props.allPosts.map((post) => {
     return post.frontmatter.topic;
   });
+  let uniqueSections = [...new Set(allSections)];
 
   return (
     <div className={styles.pillsContainer}>
@@ -25,7 +26,7 @@ export default function SectionPills(props: SectionPillsProps) {
         <p>&lt;</p>
       </div>
       <div className={styles.pills} ref={containerRef}>
-        {allSections.map((section) => {
+        {uniqueSections.map((section) => {
           return (
             <a href={`/blog/${section}`} className={`${styles.pillItem}`}>
               {section}
