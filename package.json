@@ -6,6 +6,7 @@
     "devHost": "astro dev --host",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "buildOnly": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

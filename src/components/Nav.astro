@@ -3,15 +3,12 @@ import ThemeToggleButton from './ThemeToggleButton.svelte';
 const { current = '' } = Astro.props;
 ---
 
-<script is:inline data-astro-rerun>
+<script>
   document.addEventListener('astro:page-load', () => {
     const hamburger = document.querySelector('.drawer-container');
     const drawerContent = document.querySelector('.drawer-content');
-    console.log(hamburger);
 
     hamburger?.addEventListener('click', () => {
-      console.log('container', drawerContent.classList);
-
       if (drawerContent?.classList.contains('hide')) {
         drawerContent?.classList.remove('hide');
         drawerContent.classList.add('show');

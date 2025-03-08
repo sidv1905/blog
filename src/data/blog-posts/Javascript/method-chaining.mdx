@@ -44,7 +44,10 @@ Now after implementation of it,
 you can :
 
 ```js
-player.setSalary(1000).changeTeam('Barcelona').addBonus(100).getDetails();
+player.setSalary(1000)
+.changeTeam('Barcelona')
+.addBonus(100)
+.getDetails();
 ```
 
 First longer way is like, we call the player set his salary, he goes back home, we call him again to inform , that hey we changed your team. Its not actually that, but just to understand, its unnecessary lines of code
@@ -135,7 +138,8 @@ But see the inside of the function it returns this, this is pointing to the same
 So,
 player.setSalary(100) returns player object reference, now
 
-I have the same object, i can do returnedThis.changeTeam("barcelone") right ?
+I have the same object, i can do return 
+this.changeTeam("barcelone") right ?
 It also returns this, so i can chain more along.
 
 So thats the base on how to implement method chaining in JS.
@@ -224,10 +228,15 @@ Now we can create simple objects with new keywords, that's the advantage of clas
 
 const player3 = new PlayerClass()
 
-player3.setSalary(1000).changeTeam("real madrid").getDetails()
+player3.setSalary(1000)
+.changeTeam("real madrid")
+.getDetails()
 const player4 = new PlayerClass()
 
-player4.setSalary(200).addBonus(100).changeTeam("Manu").getDetails()
+player4.setSalary(200)
+.addBonus(100)
+.changeTeam("Manu")
+.getDetails()
 
 See that's how amazing method chaining is,
 
