@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "devHost": "astro dev --host",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
@@ -19,16 +20,17 @@
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.0.1",
+    "browserslist": "^4.24.4",
     "classnames": "^2.5.1",
     "nanostores": "^0.10.3",
+    "playground-elements": "0.18.1",
     "react": "^19.0.0-beta",
     "react-dom": "^19.0.0-beta",
     "reading-time": "^1.5.0",
     "rehype-external-links": "^3.0.0",
     "remark-gfm": "^4.0.0",
     "remark-smartypants": "^2.0.0",
-    "typescript": "^5.4.5",
-    "playground-elements": "0.18.1"
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

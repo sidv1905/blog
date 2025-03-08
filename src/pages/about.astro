@@ -6,18 +6,30 @@ const description = 'About your blog.';
 const permalink = `${Astro.site.href}about`;
 ---
 
-<BaseLayout title={title} description={description} permalink={permalink} current="about">
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="about"
+>
   <div class="container">
     <h1>About</h1>
     <figure class="about-image">
-      <img src="/assets/Workin2.webp" alt="Illustration of a notebook" width="330">
-      <figcaption>
-      Fig. Working on some vacation
-      </figcaption>
+      <img
+        src="/assets/Workin2.webp"
+        alt="Illustration of a notebook"
+        width="330"
+      />
+      <figcaption>Fig. Working on some vacation</figcaption>
     </figure>
-  <p>
-  Hey ! My name is Siddharth Varangaonkar. I love to code on web, build things and make them exceptionally awesome. Currently I am working as UI Engineer at Flipkart. I am a developer with love for javascript and python with precise knowledge and mostly developing applications on them but not hesitating to work on anything else. Everything related to computing is my passion even hardware part. Its so interesting to dive in.
-  </p>
+    <p>
+      Hey ! My name is Siddharth Varangaonkar. I love to code on web, build
+      things and make them exceptionally awesome. Currently I am working as
+      Software Engineer at Flipkart. I am a developer with love for javascript
+      and python with precise knowledge and mostly developing applications on
+      them but not hesitating to work on anything else. Everything related to
+      computing is my passion even hardware part. Its so interesting to dive in.
+    </p>
   </div>
 </BaseLayout>
 

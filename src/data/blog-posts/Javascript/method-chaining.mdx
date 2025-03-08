@@ -47,19 +47,20 @@ you can :
 player.setSalary(1000).changeTeam('Barcelona').addBonus(100).getDetails();
 ```
 
-First longer way is like, we call the player set his salary, he goes back home, we call him again to inform , that hey changed your team. Its not actually that, but just to understand, its unnecessary lines of code
+First longer way is like, we call the player set his salary, he goes back home, we call him again to inform , that hey we changed your team. Its not actually that, but just to understand, its unnecessary lines of code
 Also one more use case, what if we have a hugeee function , bad code, we can divide it in smaller pieces and call it like the way we did. Isnt it amazing.
 
-So just better readability, more concise code, more reusability, and best practice.
+So just better readability, more concise code, more reusability, and a good practice.
+
 
 # <a name="What">What can be done ?</a>
 
 There are three ways we can go for, it depends on which design pattern you like and what do you prefer, So just think about it.
 How can it be solved, what functionality of javascript can you use to take it in advantage.
 
-If we think about it once, we just need a technique in which when we caller player.setSalary(100) we just want it to update it in players memory and we want that it returns reference to it so that we can call next function of the same player.
+If we think about it once, we just need a technique in which when we call player.setSalary(100) we just want it to update it in players memory and we want that it returns reference to it so that we can call next function of the same player.
 
-So how do we self reference. <strong style={{color:"aqua"}}>'this'</strong> helps. 'this' is the magic in javascript which refers to the object that is currently calling the function. SO if we invoke a method or function we can self refer that object we created and call and chain again. Isnt it amazing ?
+So how do we self reference. <strong style={{color:"aqua"}}>'this'</strong> helps. 'this' is the magic in javascript which refers to the object that is currently calling the function. So if we invoke a method or function we can self refer that object we created and call and chain again. Isnt it amazing ?
 
 Just imagine an object with a value and lot of methods, now when we call one of em it returns this, i.e self reference , so the next function gets this and it calls the same object again with new invocation.
 
@@ -72,21 +73,6 @@ So now lets see the most simple method with which we can solve it,
 Just simply object,
 
 lets imagine we have an object1
-
-## CodeComponent
-
-
-<playground-ide id="playground" class="playground-theme-base16-dark"> 
-  <script type="sample/html" filename="index.html">
-    <body>
-      Hello
-    </body>
-  </script>
-
-  <script type="sample/ts" filename="index.ts">
-    document.body.appendChild(document.createTextNode("World!"))
-  </script>
-</playground-ide>
 
 So this object uses this and returns this. LOL confused ?
 
@@ -107,6 +93,7 @@ that means hey take this object back and you can chain one more call. So as we m
 # <a href="how">How to write it ?</a>
 
 Now we will see the three major ways to do method chaining :
+
 These are just design patters, and concepts of javascript like prototype, functions and class syntax are at least expected.
 
 So learn these, then come back.
@@ -139,16 +126,13 @@ let player = {
 player.setSalary(1000).changeTeam('Barcelona').addBonus(100).getDetails();
 ```
 
-See the Pen Method Chaining JS by Siddharth Varangaonkar (@sidv1905) on CodePen.
 
-## COde COmponet
 
-Just open the codepen above and you can check, so idea is I have a player object and i want to change its team, set salary and what all. So I just make a person object, and add my functions inside it, will all details also in the property. And now we want to chain them
 
 player.setSalary(100) is called right first, this is simple, right ? Javascript basic
 But see the inside of the function it returns this, this is pointing to the same object.
 
-SO,
+So,
 player.setSalary(100) returns player object reference, now
 
 I have the same object, i can do returnedThis.changeTeam("barcelone") right ?
@@ -195,9 +179,11 @@ just do
 
 const player1 = new Player()
 
-player1.changeTeam("Manu").setSalary(1000).addBonus(100)
+player1.changeTeam("Manu")
+.setSalary(1000)
+.addBonus(100)
 
-Nothing's different in this,
+here’s no major difference in functionality.
 
 Just imagine , or read what does new keyword do
 It will create an object and return it, and we can refer it with this keyword.
@@ -207,7 +193,7 @@ Yes, its javascript's two simple and yet complex concepts haunting us and helpin
 
 3. Classes
 
-Its simpler to understand if you understand protoype thing, because behind the scenes classes are the same, just a new way to write and share properties
+It's simpler to understand if you're familiar with prototypes, because behind the scenes, classes work the same way—they're just a different way to write and share properties
 
 ```js
 class PlayerClass {
@@ -243,10 +229,13 @@ const player4 = new PlayerClass()
 
 player4.setSalary(200).addBonus(100).changeTeam("Manu").getDetails()
 
-## Code COmpo
-
-See all three examples in this codepen
-
 See that's how amazing method chaining is,
 
-Method chaining looks better to me than currying, its just a way of writing objects so that we can write an amazing single line functionalitiesss. Currying is important and helpful and has different use cases.
+Method chaining looks better to me than currying. It's just a way of structuring objects to enable clean, single-line functionalities
+
+Things are not always right to do, you cant chain it everytime, lot of method chaining can definitely hinder code readability as well.
+What if one of the method returning this throws an exception ?
+What if we want to make a change in one of the chain method ? Can it break subsequent chain ?
+
+Think about these points and make a wise decision. Personally, I mostly use method chaining for updating user data or modifying data sequentially for better readability.
+

@@ -75,24 +75,29 @@ const { current = '' } = Astro.props;
     width: 75px;
   }
   .drawer-container {
-    position: absolute;
-    top: 30px;
-    right: 30px;
     display: none;
     cursor: pointer;
     z-index: 1000;
+  }
+  .drawer-row {
+    display: none;
+    flex-direction: row;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 1001;
   }
   .drawer-content {
     position: absolute;
     display: none;
     background-color: var(--text-main);
     color: var(--background-body);
-    z-index: 999;
+    z-index: 1000;
     padding-top: 2em;
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 25%;
+    height: 35%;
   }
 
   .bar1,
@@ -107,6 +112,13 @@ const { current = '' } = Astro.props;
   @media only screen and (max-width: 767px) {
     nav {
       display: none;
+    }
+    .drawer-row {
+      display: flex;
+      justify-content: space-between;
+    }
+    .drawer-row > * {
+      margin-left: 1rem;
     }
     .drawer-container {
       display: inline-block;
@@ -134,10 +146,15 @@ const { current = '' } = Astro.props;
       <ThemeToggleButton client:load />
     </div>
   </nav>
-  <div class="drawer-container">
-    <div class="bar1"></div>
-    <div class="bar2"></div>
-    <div class="bar3"></div>
+  <div class="drawer-row">
+    <div class="theme-toggle-container">
+      <ThemeToggleButton client:load />
+    </div>
+    <div class="drawer-container">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
   </div>
   <div class="drawer-content hide">
     <a class={current === '' ? 'selected' : ''} href="/">home</a>
