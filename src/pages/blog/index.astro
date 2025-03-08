@@ -4,7 +4,6 @@ import SectionPills from '../../components/SectionPills.tsx';
 const title = 'Blog';
 const description = 'Latest articles.';
 const permalink = `${Astro.site.href}blog`;
-console.log('cart hai ya nahi');
 
 let allPosts = await Astro.glob('../../data/blog-posts/*/*.mdx');
 allPosts = allPosts.sort(
@@ -23,18 +22,21 @@ allPosts = allPosts.sort(
   <div class="container">
     <h1>Blog</h1>
     <div>
-      <SectionPills client:load allPosts={allPosts}/>
-      {allPosts
-        .map((post, index) => {
+      <SectionPills client:load allPosts={allPosts} />
+      {
+        allPosts.map((post, index) => {
           const hrefPost = `/blog/${post.file.split('/').slice(-2)[0]}/${post.file.split('/').pop().split('.').shift()}`;
-          const hrefTopic = `/blog/${post.file.split('/').slice(-2)[0]}/`
+          const hrefTopic = `/blog/${post.file.split('/').slice(-2)[0]}/`;
           return (
             <div>
               {index !== 0 && <hr />}
               <div class="post-item">
                 <h2>
                   <a href={hrefPost}>{post.frontmatter.title}</a>{' '}
-                  <a  href={hrefTopic} class="subtitle"> ~ {post.frontmatter.topic}</a>
+                  <a href={hrefTopic} class="subtitle">
+                    {' '}
+                    ~ {post.frontmatter.topic}
+                  </a>
                 </h2>
                 <p>{post.frontmatter.description}</p>
                 <div class="post-item-footer">
@@ -45,7 +47,8 @@ allPosts = allPosts.sort(
               </div>
             </div>
           );
-        })}
+        })
+      }
     </div>
   </div>
 </BaseLayout>

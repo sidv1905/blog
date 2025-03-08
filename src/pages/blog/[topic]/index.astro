@@ -3,7 +3,6 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 const title = 'Blog';
 const description = 'Latest articles.';
 const permalink = `${Astro.site.href}blog`;
-console.log('cart hai ya nahi');
 
 export async function getStaticPaths() {
   const posts = await Astro.glob('../../../data/blog-posts/*/*.mdx');
@@ -102,20 +101,20 @@ const allPostsfiltered = allPosts.filter((post) => {
     margin-left: 1em;
     font-size: 0.4em;
   }
-  .heading{
-      display:flex;
-      align-items: center;
+  .heading {
+    display: flex;
+    align-items: center;
   }
-  h1{
-      margin:0;
-      padding-left: 0.4em;
+  h1 {
+    margin: 0;
+    padding-left: 0.4em;
   }
-  .posts{
-      margin-top: 7.5em;
+  .posts {
+    margin-top: 7.5em;
   }
-  .heading a{
-      font-size: 1.2em;
-      cursor:pointer;
-      text-decoration: none;
+  .heading a {
+    font-size: 1.2em;
+    cursor: pointer;
+    text-decoration: none;
   }
 </style>
