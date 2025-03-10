@@ -48,13 +48,13 @@ const allPostsfiltered = allPosts.filter((post) => {
 >
   <div class="container">
     <div class="heading">
-      <a href="/blog">&#8592;</a>
+      <a href="/blog/posts">&#8592;</a>
       <h1>{topic}</h1>
     </div>
     <div class="posts">
       {
         allPostsfiltered.map((post, index) => {
-          const href = `/blog/${topic}/${postName}`;
+          const href = `/blog/posts/${topic}/${postName}`;
           return (
             <div>
               {index !== 0 && <hr />}

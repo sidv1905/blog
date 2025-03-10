@@ -28,7 +28,7 @@ export default function SectionPills(props: SectionPillsProps) {
       <div className={styles.pills} ref={containerRef}>
         {uniqueSections.map((section) => {
           return (
-            <a href={`/blog/${section}`} className={`${styles.pillItem}`}>
+            <a href={`/blog/posts/${section}`} className={`${styles.pillItem}`}>
               {section}
             </a>
           );

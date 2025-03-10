@@ -10,7 +10,7 @@ export default function SectionPosts(props: SectionPillsProps) {
           return true;
         })
         .map((post, index) => {
-          const href = `/blog/${post.file.split('/').pop().split('.').shift()}`;
+          const href = `/blog/posts/${post.file.split('/').pop().split('.').shift()}`;
           return (
             <div>
               {index !== 0 && <hr />}

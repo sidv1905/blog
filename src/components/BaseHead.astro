@@ -9,13 +9,13 @@ export interface Props {
 }
 
 const { title, description, permalink } = Astro.props;
-const socialUrl = Astro.site.href + 'assets/social.png';
+const socialUrl = Astro.site.href + '/blog/assets/social.png';
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="/blog/favicon.ico" />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>

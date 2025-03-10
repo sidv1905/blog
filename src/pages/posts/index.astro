@@ -25,8 +25,8 @@ allPosts = allPosts.sort(
       <SectionPills client:load allPosts={allPosts} />
       {
         allPosts.map((post, index) => {
-          const hrefPost = `/blog/${post.file.split('/').slice(-2)[0]}/${post.file.split('/').pop().split('.').shift()}`;
-          const hrefTopic = `/blog/${post.file.split('/').slice(-2)[0]}/`;
+          const hrefPost = `/blog/posts/${post.file.split('/').slice(-2)[0]}/${post.file.split('/').pop().split('.').shift()}`;
+          const hrefTopic = `/blog/posts/${post.file.split('/').slice(-2)[0]}/`;
           return (
             <div>
               {index !== 0 && <hr />}
