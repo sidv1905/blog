@@ -9,7 +9,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://sidblogs.github.io',
+  site: 'https://sidv1905.github.io',
   base: '',
   integrations: [mdx(), svelte(), react()],
   markdown: {
