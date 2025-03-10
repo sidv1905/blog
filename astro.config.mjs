@@ -10,7 +10,7 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://sidblogs.github.io',
-  base: 'blog',
+  base: '',
   integrations: [mdx(), svelte(), react()],
   markdown: {
     shikiConfig: {
