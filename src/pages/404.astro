@@ -1,12 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-let allPosts = await Astro.glob('../data/blog-posts/*/*.mdx');
-allPosts = allPosts.sort(
-  (a, b) =>
-    new Date(b.frontmatter.publishDate).valueOf() -
-    new Date(a.frontmatter.publishDate).valueOf(),
-);
 const title = "Siddharth's blog";
 const description = 'I write about tech, chess and more.';
 const permalink = Astro.site.href;
@@ -17,15 +10,10 @@ const permalink = Astro.site.href;
     <div class="home-container">
       <div class="home-copy">
         <h1>Hey I'm Siddharth</h1>
-        <p>
-          Fueled by an uncontrollable urge to scribble thoughts, tinker with
-          code, and sharpen my brain with chess, I created this website as my
-          digital playground. Here, you’ll find me pouring out words like a
-          caffeinated blogger, debugging my way through life, and occasionally
-          plotting world domination, one chess move at a time! 🖋️ 💻 ♟️
-        </p>
+        <p>You are looking for something which does not exist</p>
         <p style="font-size: 10pt;">
-          FYI, Not a perfect coder, still learning and exploring!
+          404 - Page not found, Please visit <a href="/blog">Here</a> to read more
+          about me and my blogs
         </p>
       </div>
       <div class="hero-image-container">
