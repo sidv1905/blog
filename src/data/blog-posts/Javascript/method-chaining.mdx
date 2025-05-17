@@ -19,9 +19,15 @@ topic: Javascript
 
 # <a name="Why">Why do we need this ?</a>
 
-Javascript has lot of ways to write the same code. When we want to manipulate a value in multiple ways , we mostly write different methods and call each method to get the final value. But javascript says that dont worry buddy, I can help you call the methods in a single line and just chain the methods so that they can be called one after that. Yes javascript is that cool. Just for an example, imagine you have an instance of a player and you want to set its salary, change its salary, change his team, and add bonus to his salary, after he has changed his team.
+JavaScript is wild. It gives you a hundred ways to do the same thing—and somehow, they're all valid. When we need to manipulate a value in multiple ways, the usual route is to write separate methods and call them one after another. But JavaScript leans in and says, "Relax, buddy. I got you." Instead of calling each method individually, JavaScript lets you chain them together like a boss, running one after the other in a single, elegant line.
 
-Now, you will write a method, class, whatever, and write different methods for every functionality.
+Yes, JavaScript is that cool.
+
+Let’s say you have a <span>Player</span> instance. Now you want to set the player's salary, update it later, change their team, and then—after the team change—add a bonus to their salary. Normally, you'd write a class with different methods for each of these actions and call them step by step.
+
+But with method chaining, you can do it all in one go, like a fluent conversation with your code. It's not just efficient—it’s stylish.
+
+Let's look at old school method here:
 
 ```js
 player.setSalary(100);
@@ -33,10 +39,9 @@ player.addBonus(100);
 player.getDetails();
 ```
 
-Javascript be like, You have used lot of lines, go for method cahining, its just better,
+JavaScript be like, "Whoa, that's a lot of lines. Ever heard of method chaining? Trust me, it's just better."
 
-Now after implementation of it,
-you can :
+And once you implement it, life gets good. Now you can:
 
 ```js
 player.setSalary(1000)
@@ -45,60 +50,74 @@ player.setSalary(1000)
 .getDetails();
 ```
 
-First longer way is like, we call the player set his salary, he goes back home, we call him again to inform , that hey we changed your team. Its not actually that, but just to understand, its unnecessary lines of code
-Also one more use case, what if we have a hugeee function , bad code, we can divide it in smaller pieces and call it like the way we did. Isnt it amazing.
+First, the longer way is like this:  
+We call the player to set his salary—he says “okay” and goes back home. Then we call him again like, “Hey, by the way, we changed your team.”
 
-So just better readability, more concise code, more reusability, and a good practice.
+Now, it’s obviously not *literally* that, but you get the point—it's a bunch of unnecessary lines of code.
 
+And here's another fun use case:  
+What if we have a *hugeee* function? A chaotic mess. Instead of crying over it, we can break it into smaller, meaningful pieces and call them just like we did above.  
+Isn’t that amazing?
 
-# <a name="What">What can be done ?</a>
+So yeah—better readability, more concise code, improved reusability, and overall, just a good practice to follow.
 
-There are three ways we can go for, it depends on which design pattern you like and what do you prefer, So just think about it.
-How can it be solved, what functionality of javascript can you use to take it in advantage.
+# What can be done?
 
-If we think about it once, we just need a technique in which when we call player.setSalary(100) we just want it to update it in players memory and we want that it returns reference to it so that we can call next function of the same player.
+There are three ways to approach this. It really depends on your preferred design pattern and personal coding style. So, take a moment and think about it.
 
-So how do we self reference. <strong style={{color:"aqua"}}>'this'</strong> helps. 'this' is the magic in javascript which refers to the object that is currently calling the function. So if we invoke a method or function we can self refer that object we created and call and chain again. Isnt it amazing ?
+How can we solve this?  
+What JavaScript feature can we take advantage of?
 
-Just imagine an object with a value and lot of methods, now when we call one of em it returns this, i.e self reference , so the next function gets this and it calls the same object again with new invocation.
+If we think it through, what we need is a technique where, when we call `player.setSalary(100)`, it updates the player’s internal state *and* returns a reference to the same object—so we can immediately call the next method, like `.changeTeam("Lakers")`.
 
-That's how it can be solved.
+So how do we reference the same object within its own methods?
 
-# <a href="Solution">Solution:</a>
+Say hello to the magic word: `this`
 
-So now lets see the most simple method with which we can solve it,
+`this` in JavaScript refers to the object that is currently calling the function. So when we invoke a method, we can “self-reference” the object and return it, allowing us to chain the next method. Isn’t that cool?
 
-Just simply object,
+Just imagine an object with a value and a bunch of methods. When we call one of those methods, it returns `this`—i.e., a reference to itself—so the next function gets that and continues operating on the same object with a fresh invocation.
 
-lets imagine we have an object1
+**That’s the trick. That’s how it works.
 
-So this object uses this and returns this. LOL confused ?
+# Solution:
 
-So do you know what this in javascript is ?
+Now let’s look at the simplest method to implement this:
 
-If not refer here,
+Just a plain ol' object.
 
-Read about this here : Mozilla MDN this
+Let’s imagine we have object1.
 
-So now you know how this works and what it refers, in simple language it refers itself, So itself i.e the object on which it is called, as you can see player. , so the one before dot (.) is referred by this.
+This object uses this, and returns this.  
+LOL—confused?
 
-So this is the core of method chaining
+Let’s back it up:  
+Do you know what this in JavaScript is?
 
-What we do in the objects methods is return this,
+If not, refer here:  
+**Read about this here:** [Mozilla MDN: this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
 
-that means hey take this object back and you can chain one more call. So as we manipulate object with this, return this, we can call more functions on the same object.
+Now that you know what `this` does and how it behaves—in simple terms, it refers to *itself*.  
+That is, the object on which the method is being called. You see `player.` , so the one before the dot (`.`) is what `this` refers to inside the method.
 
-# <a href="how">How to write it ?</a>
+**And that, my friend, is the core of method chaining.**
 
-Now we will see the three major ways to do method chaining :
+In our object’s methods, we simply `return this`.
 
-These are just design patters, and concepts of javascript like prototype, functions and class syntax are at least expected.
+That’s basically saying, *“Here, take this object back so you can call another method on it.”*  
+And that’s how, as we manipulate the object, we keep returning `this`, allowing us to chain even more calls—on the same object, clean and neat.
 
-So learn these, then come back.
+# How to write it?
 
-First ,
+Now we’ll explore the **three major ways** to implement method chaining.
 
-1.  Simply Object
+These are just design patterns, and they rely on core JavaScript concepts like prototypes, functions, and class syntax—so make sure you're comfortable with those before jumping in.
+
+So go ahead, learn those, then come back.
+
+First up:
+
+## 1. Simply Object
 
 ```js
 let player = {
@@ -127,23 +146,31 @@ player.setSalary(1000).changeTeam('Barcelona').addBonus(100).getDetails();
 
 
 
-player.setSalary(100) is called right first, this is simple, right ? Javascript basic
-But see the inside of the function it returns this, this is pointing to the same object.
+`player.setSalary(100)` is called first—simple, right? Basic JavaScript.
 
-So,
-player.setSalary(100) returns player object reference, now
+But take a look inside the function: it returns `this`.  
+And `this` is pointing to the same object.
 
-I have the same object, i can do return 
-this.changeTeam("barcelone") right ?
-It also returns this, so i can chain more along.
+So now,  
+`player.setSalary(100)` returns the reference to the `player` object.
 
-So thats the base on how to implement method chaining in JS.
+Which means...
 
-Limitation is we cant create more instances , or definitely we can do duplication
+I have the same object in hand—I can now do  
+`return this.changeTeam("barcelona")`, right?
 
-Another syntactic method is Functions:
+And since that also returns `this`, I can chain even more methods after that.
 
-2. Functions
+**That’s the foundation of how method chaining works in JavaScript.**
+
+### Limitation:  
+We can’t directly create multiple instances this way (unless we start duplicating objects manually or redesign it to support that).
+
+---
+
+Another syntactic method is using **Functions**:
+
+## 2. Functions
 
 ```js
 function Player() {}
@@ -172,27 +199,30 @@ Player.prototype.getDetails = function () {
 };
 ```
 
-Now how to make an object of it
+Now, how do we make an object of it?
 
-just do
+Just do:
 
+```js
 const player1 = new Player()
 
-player1.changeTeam("Manu")
-.setSalary(1000)
-.addBonus(100)
+player1.changeTeam("Manu").setSalary(1000).addBonus(100)
+```
 
-here’s no major difference in functionality.
+There’s no major difference in functionality here.
 
-Just imagine , or read what does new keyword do
-It will create an object and return it, and we can refer it with this keyword.
-So we store an plain empty JS object in player1 and why we can refer it because its before the .
-Yes dot, before the dot things gives us the context of what we want to change.
-Yes, its javascript's two simple and yet complex concepts haunting us and helping us in same way,.
+Just imagine—or better yet, read—what the new keyword actually does.
+It creates an object and returns it. We can then refer to that object using the this keyword.
 
-3. Classes
+So basically, we’re storing a plain empty JavaScript object in player1, and we can refer to it because it comes before the dot.
+Yes—the dot! The thing before the dot gives us the context of what we want to change.
 
-It's simpler to understand if you're familiar with prototypes, because behind the scenes, classes work the same way—they're just a different way to write and share properties
+It’s JavaScript’s two simple-yet-complex concepts haunting us and helping us at the same time.
+
+## 3. Classes
+It’s simpler to understand if you’re already familiar with prototypes—because behind the scenes, classes work the same way.
+They’re just a different, more modern way to write and share properties and behavior.
+
 
 ```js
 class PlayerClass {
@@ -219,27 +249,29 @@ class PlayerClass {
 }
 ```
 
-Now we can create simple objects with new keywords, that's the advantage of class , just that in method chaining not anything else
+Now we can create simple objects with the new keyword—that’s the main advantage of classes. At least when it comes to method chaining, nothing else really changes.
+const player3 = new PlayerClass();
+```js
+player3.setSalary(1000).changeTeam("real madrid").getDetails();
 
-const player3 = new PlayerClass()
+const player4 = new PlayerClass();
 
-player3.setSalary(1000)
-.changeTeam("real madrid")
-.getDetails()
-const player4 = new PlayerClass()
 
-player4.setSalary(200)
-.addBonus(100)
-.changeTeam("Manu")
-.getDetails()
+player4.setSalary(200).addBonus(100).changeTeam("Manu").getDetails();
+```
 
-See that's how amazing method chaining is,
 
-Method chaining looks better to me than currying. It's just a way of structuring objects to enable clean, single-line functionalities
+See? That’s how amazing method chaining is.
 
-Things are not always right to do, you cant chain it everytime, lot of method chaining can definitely hinder code readability as well.
-What if one of the method returning this throws an exception ?
-What if we want to make a change in one of the chain method ? Can it break subsequent chain ?
 
-Think about these points and make a wise decision. Personally, I mostly use method chaining for updating user data or modifying data sequentially for better readability.
+To me, method chaining looks cleaner and more intuitive than currying. It’s just a neat way of structuring objects to enable clear, single-line method calls that flow naturally.
 
+That said—method chaining isn’t always the right answer. You can’t chain everything all the time. Too much chaining can actually hurt code readability.
+
+What if one of the methods returning this throws an exception?
+What if you want to change the behavior of a method in the middle of a chain?
+Could that break the rest of the chain?
+
+Think about these points carefully and make a wise decision.
+
+Personally, I mostly use method chaining for updating user data or modifying objects sequentially—where it really shines in improving readability and flow.
